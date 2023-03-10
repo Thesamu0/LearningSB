@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout (~{:: main})}">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menores de idade</title>
+</head>
+<body>
+<main>
+  <h1>Pessoas</h1>
+
+  <div>
+    <nobr>
+      <a th:href="@{/pessoa/add}">Add Pessoa</a> |
+      <a th:href="@{/}">Voltar</a>
+    </nobr>
+  </div>
+  <br/><br/>
+  <div>
+    <table class="table">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>CPF</th>
+        <th>RG</th>
+        <th>Nome da mãe</th>
+      </tr>
+      <tr th:each ="pessoa : ${pessoas_menores}">
+        <td th:utext="${pessoa.id}">...</td>
+        <td th:utext="${pessoa.nome}">...</td>
+        <td th:utext="${pessoa.idade}">...</td>
+        <td th:utext="${pessoa.cpf}">...</td>
+        <td th:utext="${pessoa.rg}">...</td>
+        <td th:utext="${pessoa.nomeDaMae}">...</td>
+        <td>
+          <a class="btn btn-primary btn-sm" th:href="@{/pessoa/{pessoaId}/edit(pessoaId=${pessoa.id})}">Edit</a>
+          <a class="btn btn-danger btn-sm" th:href="@{/pessoa/{pessoaId}/delete(pessoaId=${pessoa.id})}">Delete</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br/>
+</main>
+</body>
+</html>

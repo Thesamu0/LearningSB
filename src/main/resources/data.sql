@@ -1,0 +1,2 @@
+INSERT INTO tb_pessoa(cpf, idade, nome, nome_da_mae, rg) values ('123456', 25, 'Marcos', 'Maria', '123456' );
+INSERT INTO tb_pessoa(cpf, idade, nome, nome_da_mae, rg) values ('654321', 15, 'José', 'Maria', '654321' );

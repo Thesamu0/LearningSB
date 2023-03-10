@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout (~{:: main})}">
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+<main>
+  <form th:action="${add} ? @{/pessoa/add} : @{/pessoa/{pessoaId}/edit(pessoaId=${pessoa.id})}"
+        th:object="${pessoa}" th:method="${add} ? POST : PUT">
+    <div class="container">
+      <h1 th:text="${add} ? 'Cadastrar Pessoa' : 'Editar Pessoa'"></h1>
+      <div th:if="${pessoa.id}" class="mb-3 row">
+        <label for="inputId" class="col-sm-2 col-form-label">Id</label>
+        <div class="col-sm-3">
+          <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${pessoa.id}" class="form-control" id="inputId">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-3">
+          <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="*{nome}" class="form-control" id="inputNome">
+          <ul>
+            <li th:each="erro : ${#fields.errors('nome')}" th:text="${erro}" />
+          </ul>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputIdade" class="col-sm-2 col-form-label">Idade</label>
+        <div class="col-sm-3">
+          <input type="text" th:field="*{idade}" class="form-control" id="inputIdade">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputCpf" class="col-sm-2 col-form-label">CPF</label>
+        <div class="col-sm-3">
+          <input type="text" th:field="*{cpf}" class="form-control" id="inputCpf">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputRg" class="col-sm-2 col-form-label">RG</label>
+        <div class="col-sm-3">
+          <input type="text" th:field="*{rg}" class="form-control" id="inputRg">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputNomeDaMae" class="col-sm-2 col-form-label">Nome da Mãe</label>
+        <div class="col-sm-3">
+          <input type="text" th:field="*{nomeDaMae}" class="form-control" id="inputNomeDaMae">
+        </div>
+      </div>
+      <input type="submit" value="Gravar" class="btn btn-primary mb-3"/>
+      <br/><br/>
+      <a th:href="@{/pessoas}">Voltar</a>
+    </div>
+  </form>
+  <br/>
+</main>
+</body>
+</html>
